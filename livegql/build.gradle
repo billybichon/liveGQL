@@ -1,0 +1,36 @@
+group 'billy.bichon'
+version '1.0'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+}
+jar {
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
+
+task deleteJar(type: Delete) {
+    delete 'libs/livegql.jar'
+}
+
+task createJar(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('libs/jars/')
+    include('classes.jar')
+    rename('classes.jar', 'livegql.jar')
+}
+
+createJar.dependsOn(deleteJar, build)
+
+dependencies {
+    compile 'org.glassfish.tyrus.bundles:tyrus-standalone-client:1.10'
+    compile 'com.google.code.gson:gson:2.7'
+}
