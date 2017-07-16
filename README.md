@@ -77,5 +77,11 @@ liveGQL.unsubscribe(subscription);
 liveGQL.closeConnection();
 ```
 
+## Dependency ##
+
+Library on which liveGQL depends:
+  - [Tyrus](https://github.com/tyrus-project/tyrus) for managing websocket
+  - [Gson](https://github.com/google/gson) for handling json object
+
 ## Bugs ##
   - Error are not handled but your app won't crash (because it's on the stream ;))
