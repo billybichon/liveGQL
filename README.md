@@ -10,6 +10,7 @@ This a simple java library in order to use GraphQL Subscription on WebSocket bas
 
 ## Features ##
   - [x] connect to a GraphQL server
+  - [ ] Handle init payload
   - [x] Subscribe/Unsubscribe
   - [x] Close connection
   - [x] Error handling
@@ -70,7 +71,7 @@ dependency {
 
 ## How to use ##
 
-##### Initaliaze #####
+##### Initialize #####
 ```java
 LiveGQL liveGQL = new LiveGQL("ws://your.url", new LiveGQLListener() {
     // overide methods
