@@ -29,6 +29,15 @@ You'll find the iOS version for this library here: [iOS liveGQL](https://github.
 ### Gradle ###
 
 ```gradle
+
+// project gradle
+repositories {
+  maven {
+    url "https://dl.bintray.com/billy-bichon/Maven/"
+  }
+}
+
+// module gradle
 dependency {
   compile 'com.github.billy-bichon:livegql:1.0'
 }
@@ -37,6 +46,12 @@ dependency {
 ### maven ###
 
 ```maven
+<repository>
+  <id>LiveGQL</id>
+  <name>LiveGQL Repository</name>
+  <url>https://dl.bintray.com/billy-bichon/Maven/</url>
+</repository>
+
 <dependency>
   <groupId>com.github.billy-bichon</groupId>
   <artifactId>livegql</artifactId>
@@ -79,7 +94,7 @@ liveGQL.closeConnection();
 
 ## Dependency ##
 
-Library on which liveGQL depends:
+Libraries on which liveGQL depends:
   - [Tyrus](https://github.com/tyrus-project/tyrus) for managing websocket
   - [Gson](https://github.com/google/gson) for handling json object
 

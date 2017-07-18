@@ -1,36 +1,69 @@
-group 'billy.bichon'
-version '1.0'
-
-apply plugin: 'java'
-
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
-
-repositories {
-    mavenCentral()
-}
-jar {
-    from {
-        configurations.compile.collect {
-            it.isDirectory() ? it : zipTree(it)
-        }
+buildscript {
+    repositories {
+        jcenter()
     }
 }
 
-task deleteJar(type: Delete) {
-    delete 'libs/livegql.jar'
+plugins {
+    id "com.jfrog.bintray" version "1.7"
 }
 
-task createJar(type: Copy) {
-    from('build/intermediates/bundles/release/')
-    into('libs/jars/')
-    include('classes.jar')
-    rename('classes.jar', 'livegql.jar')
-}
+group = 'com.github.billy.bichon'
+version = '1.0'
 
-createJar.dependsOn(deleteJar, build)
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+    apply plugin: 'maven'
+    apply plugin: 'maven-publish'
+    apply plugin: 'java'
+}
 
 dependencies {
     compile 'org.glassfish.tyrus.bundles:tyrus-standalone-client:1.10'
     compile 'com.google.code.gson:gson:2.7'
+}
+
+
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            from components.java
+            groupId "com.github.billy.bichon"
+            artifactId 'livegql'
+            version '1.0'
+        }
+    }
+}
+
+bintray {
+    user = bintray_user
+    key = bintray_api_key
+
+    publications = ['MyPublication']
+    publish = true
+    pkg {
+        repo = "Maven"
+        name = "liveGQL"
+        desc = "Simple java library in order to use GraphQL Subscription on WebSocket based on Apollo Protocol."
+        websiteUrl = "https://github.com/Billy-Bichon/liveGQL"
+        issueTrackerUrl = "https://github.com/Billy-Bichon/liveGQL/issues"
+        vcsUrl = "https://github.com/Billy-Bichon/liveGQL.git"
+        licenses = ["MIT"]
+        labels = ["java", "graphql", "websocket", "programing"]
+        publicDownloadNumbers = true
+        userOrg = user
+        version {
+            name = '1.0'
+            desc = 'Initial version'
+//            vcsTag = '1.3.0'
+//            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+        }
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.1'
 }

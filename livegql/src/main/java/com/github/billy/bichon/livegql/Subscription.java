@@ -1,4 +1,4 @@
-package billy.bichon.livegql;
+package com.github.billy.bichon.livegql;
 
 /**
  * Created by billy on 16/07/2017.

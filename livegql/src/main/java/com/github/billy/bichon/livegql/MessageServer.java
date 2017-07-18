@@ -1,4 +1,4 @@
-package billy.bichon.livegql;
+package com.github.billy.bichon.livegql;
 
 import com.google.gson.Gson;
 

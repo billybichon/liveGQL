@@ -1,4 +1,4 @@
-package billy.bichon.livegql;
+package com.github.billy.bichon.livegql;
 
 /**
  * Created by billy on 12/07/2017.
@@ -23,11 +23,14 @@ public interface LiveGQLListener {
      * Called when a new message arrived.
      *
      * @param message The received message
+     * @param tag     The unique tag associated to a query
      */
     void onMessageReceived(String message, String tag);
 
     /**
      * Called when an error occurred
+     *
+     * @param error The error message
      */
     void onError(String error);
 }

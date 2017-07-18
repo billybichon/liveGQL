@@ -1,4 +1,4 @@
-package billy.bichon.livegql;
+package com.github.billy.bichon.livegql;
 
 import com.google.gson.Gson;
 
@@ -71,6 +71,7 @@ public class LiveGQL {
      *
      * @param query The query to subscribe
      * @param tag   The tag associated with this query
+     * @return A new {@link Subscription}
      */
     public Subscription subscribe(String query, String tag) {
         MessageServer message = new MessageServer(new PayloadServer(query, null, null), tag, GQL_START);
@@ -79,9 +80,9 @@ public class LiveGQL {
     }
 
     /**
-     * Subscribe to this subscription
+     * Subscribe to this subscription using his tag
      *
-     * @param subscription
+     * @param subscription The {@link Subscription} to subscribe
      */
     public void subscribe(Subscription subscription) {
         this.subscribe(subscription.getQuery(), subscription.getTag());
@@ -90,7 +91,7 @@ public class LiveGQL {
     /**
      * Subscribe to all the subscriptions
      *
-     * @param subscriptions
+     * @param subscriptions A collection of {@link Subscription}
      */
     public void subscribeAll(Collection<Subscription> subscriptions) {
         for (Subscription subscription : subscriptions) {
