@@ -19,7 +19,7 @@ This a simple java library in order to use GraphQL Subscription on WebSocket bas
 
 ## Requirements ##
 
-java version >= 1.7
+jdk version >= 1.8
 
 ## iOS ##
 
@@ -30,31 +30,16 @@ You'll find the iOS version for this library here: [iOS liveGQL](https://github.
 ### Gradle ###
 
 ```gradle
-
-// project gradle
-repositories {
-  maven {
-    url "https://dl.bintray.com/billy-bichon/Maven/"
-  }
-}
-
-// module gradle
 dependency {
-  compile 'com.github.billy-bichon:livegql:1.0'
+  compile 'com.github.billy.bichon:livegql:1.0'
 }
 ```
 
 ### maven ###
 
 ```maven
-<repository>
-  <id>LiveGQL</id>
-  <name>LiveGQL Repository</name>
-  <url>https://dl.bintray.com/billy-bichon/Maven/</url>
-</repository>
-
 <dependency>
-  <groupId>com.github.billy-bichon</groupId>
+  <groupId>com.github.billy.bichon</groupId>
   <artifactId>livegql</artifactId>
   <version>1.0</version>
 </dependency>
