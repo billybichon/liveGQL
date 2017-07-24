@@ -31,7 +31,7 @@ You'll find the iOS version for this library here: [iOS liveGQL](https://github.
 
 ```gradle
 dependency {
-  compile 'com.github.billy.bichon:livegql:1.0'
+  compile 'com.github.billybichon:livegql:1.0'
 }
 ```
 
@@ -39,7 +39,7 @@ dependency {
 
 ```maven
 <dependency>
-  <groupId>com.github.billy.bichon</groupId>
+  <groupId>com.github.billybichon</groupId>
   <artifactId>livegql</artifactId>
   <version>1.0</version>
 </dependency>

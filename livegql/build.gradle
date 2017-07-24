@@ -8,7 +8,7 @@ plugins {
     id "com.jfrog.bintray" version "1.7"
 }
 
-group = 'com.github.billy.bichon'
+group = 'com.github.billybichon'
 version = '1.0'
 
 
@@ -26,14 +26,56 @@ dependencies {
     compile 'com.google.code.gson:gson:2.7'
 }
 
+//jar {
+//    from sourceSets.main.allSource
+//    from javadoc.destinationDir
+//}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = "sources"
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = "javadoc"
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
 
 publishing {
     publications {
         MyPublication(MavenPublication) {
             from components.java
-            groupId "com.github.billy.bichon"
+            artifact sourcesJar
+            artifact javadocJar
+
+            groupId "com.github.billybichon"
             artifactId 'livegql'
             version '1.0'
+
+            pom.withXml {
+                asNode().appendNode("name", "com.github.billybichon:livegql")
+                asNode().appendNode("description", "Simple java library in order to use GraphQL Subscription on WebSocket based on Apollo Protocol.")
+                asNode().appendNode("url", "https://github.com/billybichon/liveGQL")
+                def licenses = asNode().appendNode("licenses")
+                def license = licenses.appendNode("license")
+                license.appendNode("name", "MIT")
+                license.appendNode("url", "https://opensource.org/licenses/mit-license.php")
+
+                def developers = asNode().appendNode("developers")
+                def developer = developers.appendNode("developer")
+                developer.appendNode("name", "Billy Bichon")
+                developer.appendNode("email", "billy.bichon06@gmail.com")
+
+                def scm = asNode().appendNode("scm")
+                scm.appendNode("connection", "https://github.com/billybichon/liveGQL")
+                scm.appendNode("developerConnection", "https://github.com/billybichon/liveGQL")
+                scm.appendNode("url", "https://github.com/billybichon/liveGQL")
+            }
         }
     }
 }
@@ -48,9 +90,9 @@ bintray {
         repo = "Maven"
         name = "liveGQL"
         desc = "Simple java library in order to use GraphQL Subscription on WebSocket based on Apollo Protocol."
-        websiteUrl = "https://github.com/Billy-Bichon/liveGQL"
-        issueTrackerUrl = "https://github.com/Billy-Bichon/liveGQL/issues"
-        vcsUrl = "https://github.com/Billy-Bichon/liveGQL.git"
+        websiteUrl = "https://github.com/billybichon/liveGQL"
+        issueTrackerUrl = "https://github.com/billybichon/liveGQL/issues"
+        vcsUrl = "https://github.com/billybichon/liveGQL.git"
         licenses = ["MIT"]
         labels = ["java", "graphql", "websocket", "programing"]
         publicDownloadNumbers = true
@@ -60,6 +102,10 @@ bintray {
             desc = 'Initial version'
 //            vcsTag = '1.3.0'
 //            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+            gpg {
+                sign = true
+                passphrase = bintray_gpg_passphrase
+            }
         }
     }
 }
