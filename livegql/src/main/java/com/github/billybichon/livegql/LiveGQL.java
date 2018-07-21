@@ -164,8 +164,13 @@ public class LiveGQL {
             case GQL_CONNECTION_ACK:
                 this.listener.onConnectionOpen();
                 break;
+            case GQL_ERROR:
+                this.listener.onError(message.payload.message);
             case GQL_CONNECTION_ERROR:
-                this.listener.onError(message.payload.data.toString());
+                if (message.payload != null && message.payload.data != null)
+                    this.listener.onError(message.payload.data.toString());
+                else
+                    this.listener.onError("An unknown error occurred");
                 break;
             case GQL_DATA:
                 this.listener.onMessageReceived(new Gson().toJson(message.payload.data), message.id);
