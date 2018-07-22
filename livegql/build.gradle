@@ -55,7 +55,7 @@ publishing {
 
             groupId "com.github.billybichon"
             artifactId 'livegql'
-            version '1.0'
+            version '1.1'
 
             pom.withXml {
                 asNode().appendNode("name", "com.github.billybichon:livegql")
@@ -98,8 +98,8 @@ bintray {
         publicDownloadNumbers = true
         userOrg = user
         version {
-            name = '1.0'
-            desc = 'Initial version'
+            name = '1.1'
+            desc = 'Better error handling'
 //            vcsTag = '1.3.0'
 //            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
             gpg {
