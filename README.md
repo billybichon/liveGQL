@@ -31,7 +31,7 @@ You'll find the iOS version for this library here: [iOS liveGQL](https://github.
 
 ```gradle
 dependency {
-  compile 'com.github.billybichon:livegql:1.0'
+  compile 'com.github.billybichon:livegql:1.1'
 }
 ```
 
@@ -41,13 +41,13 @@ dependency {
 <dependency>
   <groupId>com.github.billybichon</groupId>
   <artifactId>livegql</artifactId>
-  <version>1.0</version>
+  <version>1.1</version>
 </dependency>
 ```
 
 ### manually ###
 
-Just copy the `livegql-1.0.jar` inside your libs folder and be sure to use:
+Just copy the `livegql-1.1.jar` inside your libs folder and be sure to use:
 ```gradle
 dependency {
   compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -59,7 +59,7 @@ dependency {
 ##### Initialize #####
 ```java
 LiveGQL liveGQL = new LiveGQL("ws://your.url", new LiveGQLListener() {
-    // overide methods
+    // override methods
   }
 );
 ```
